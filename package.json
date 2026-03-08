@@ -1,11 +1,19 @@
 {
   "name": "hanzi-writer-miniprogram-plus",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.js",
+  "miniprogram": "miniprogram_dist",
   "scripts": {
+    "install": "node scripts/install.js",
+    "build": "node scripts/build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "files": [
+    "src",
+    "scripts",
+    "miniprogram_dist"
+  ]
 }

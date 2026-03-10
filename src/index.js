@@ -7,5 +7,6 @@ module.exports = {
   formatMoney: utils.formatMoney,
   
   // 组件路径
-  CustomButton: './components/custom-button/index'
+  CustomButton: './components/custom-button/index',
+  HanziWriterView: './components/hanzi-writer-view/index'
 };

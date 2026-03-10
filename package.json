@@ -15,5 +15,8 @@
     "src",
     "scripts",
     "miniprogram_dist"
-  ]
+  ],
+  "dependencies": {
+    "hanzi-writer": "^2.3.0"
+  }
 }

@@ -1,8 +1,17 @@
-<view 
-  class="custom-button {{type}} {{size}} {{disabled ? 'disabled' : ''}} {{pressed ? 'pressed' : ''}}"
-  bindtap="handleTap"
-  bindtouchstart="handleTouchStart"
-  bindtouchend="handleTouchEnd"
->
-  <text class="button-text">hanziwrite{{text}}</text>
+<view class="container" style="width: {{width}}px; height: {{height}}px;">
+  <canvas
+    id="writer-canvas"
+    type="{{type}}"
+    disable-scroll="{{disableScroll}}"
+    canvas-id="writer-canvas"
+    style="width: {{width}}px; height: {{height}}px;"
+  />
+  <view
+    wx:if="{{isQuizzing}}"
+    class="blocker"
+    catchtouchstart="_touchStart"
+    catchtouchend="_touchEnd"
+    catchtouchcancel="_touchEnd"
+    catchtouchmove="_touchMove"
+  />
 </view>

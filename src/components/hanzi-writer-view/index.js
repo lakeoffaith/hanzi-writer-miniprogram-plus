@@ -1,56 +1,52 @@
 Component({
-  /**
-   * 组件的属性列表
-   */
   properties: {
-    // 按钮文字
-    text: {
-      type: String,
-      value: '按钮'
+    height: {
+      type: Number,
+      value: 300,
     },
-    // 按钮类型：primary, default, warning
+    width: {
+      type: Number,
+      value: 300,
+    },
     type: {
       type: String,
-      value: 'default'
+      value: '2d',
     },
-    // 是否禁用
-    disabled: {
+    disableScroll: {
       type: Boolean,
-      value: false
+      value: false,
     },
-    // 按钮大小：small, medium, large
-    size: {
-      type: String,
-      value: 'medium'
-    }
   },
-
-  /**
-   * 组件的初始数据
-   */
   data: {
-    pressed: false
+    isQuizzing: false,
   },
-
-  /**
-   * 组件的方法列表
-   */
   methods: {
-    handleTap(e) {
-      if (this.properties.disabled) {
-        return;
-      }
-      this.triggerEvent('tap', e.detail);
+    connectContext(ctx) {
+      this.ctx = ctx;
     },
-
-    handleTouchStart() {
-      if (!this.properties.disabled) {
-        this.setData({ pressed: true });
+    disconnectContext() {
+      if (this.ctx) {
+        this.ctx = undefined;
       }
     },
-
-    handleTouchEnd() {
-      this.setData({ pressed: false });
-    }
-  }
+    _touchStart(evt) {
+      if (this.ctx) this.ctx.trigger('pointerStart', evt);
+    },
+    _touchMove(evt) {
+      if (this.ctx) this.ctx.trigger('pointerMove', evt);
+    },
+    _touchEnd(evt) {
+      if (this.ctx) this.ctx.trigger('pointerEnd', evt);
+    },
+    setIsQuizzing(isQuizzing) {
+      this.setData({ isQuizzing });
+    },
+  },
+  lifetimes: {
+    detached() {
+      if (this.ctx) {
+        this.ctx.destroy();
+      }
+    },
+  },
 });

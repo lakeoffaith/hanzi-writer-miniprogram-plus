@@ -29,16 +29,11 @@ npm install --save /Users/lizhengang/githubPrg/hanzi-writer
 ```json
 {
   "dependencies": {
-    "miniprogram-demo-component": "file:/Users/lizhengang/ComateProjects/comate-zulu-demo"
-  }
-}
-```
-
-```
-"dependencies": {
     "hanzi-writer": "^2.3.0",
     "hanzi-writer-miniprogram-plus": "file:../../githubPrg/hanzi-writer-miniprogram-plus"
   }
+}
+
 ```
 
 
@@ -69,123 +64,53 @@ console.log(money); // 1234.50
 
 ### 2. 使用自定义按钮组件
 
+
+
 在页面的 JSON 配置文件中引入组件：
 
 ```json
 {
   "usingComponents": {
-    "custom-button": "miniprogram-demo-component/components/custom-button/index"
+    
+    "CustomButton": "/miniprogram_npm/hanzi-writer-miniprogram-plus/components/custom-button",
+    "HanziWriterView": "/miniprogram_npm/hanzi-writer-miniprogram-plus/components/hanzi-writer-view"
   }
 }
 ```
 
+在页面的js
 ```
-"usingComponents": {
-    
-    "HanziWriterView": "/miniprogram_npm/hanzi-writer-miniprogram-plus/components/hanzi-writer-view"
+// index.js
+
+import {formatDate,HanziWriterContext} from 'hanzi-writer-miniprogram-plus';
+
+Page({
+  onLoad: function() {
+    this.writerCtx = HanziWriterContext({
+      id: 'hz-writer',
+      page: this,
+    });
+
+    // You can call any normal HanziWriter method here
+    // this.writerCtx.loopCharacterAnimation();
+    var day=new Date();
+    console.log(formatDate(day))
+  },
+  showChar:function(){
+    // this.writerCtx.character
+    console.log("点击按钮");
+    this.writerCtx.setCharacter('拟')
+    this.writerCtx.loopCharacterAnimation();
+    console.log("点击按钮 end"); 
   }
+})
+
+
+```
+
 
 在 WXML 中使用：
 
 ```xml
-<!-- 默认按钮 -->
-<custom-button text="默认按钮" bind:tap="onButtonTap" />
-
-<!-- 主要按钮 -->
-<custom-button text="主要按钮" type="primary" bind:tap="onButtonTap" />
-
-<!-- 警告按钮 -->
-<custom-button text="警告按钮" type="warning" bind:tap="onButtonTap" />
-
-<!-- 不同尺寸 -->
-<custom-button text="小按钮" type="primary" size="small" />
-<custom-button text="中按钮" type="primary" size="medium" />
-<custom-button text="大按钮" type="primary" size="large" />
-
-<!-- 禁用状态 -->
-<custom-button text="禁用按钮" disabled="{{true}}" />
+<HanziWriterView id="hz-writer" width="300" height="300" />
 ```
-
-在 JS 中处理点击事件：
-
-```javascript
-Page({
-  onButtonTap(e) {
-    console.log('按钮被点击了', e);
-  }
-});
-```
-
-## 组件属性
-
-### custom-button 组件
-
-| 属性名 | 类型 | 默认值 | 说明 |
-|--------|------|--------|------|
-| text | String | '按钮' | 按钮显示的文字 |
-| type | String | 'default' | 按钮类型，可选值：default, primary, warning |
-| size | String | 'medium' | 按钮大小，可选值：small, medium, large |
-| disabled | Boolean | false | 是否禁用 |
-
-### 事件
-
-| 事件名 | 说明 |
-|--------|------|
-| tap | 点击按钮时触发 |
-
-## 工具方法
-
-### formatDate(date, format)
-
-格式化日期时间。
-
-**参数：**
-- `date`: Date对象、时间戳或日期字符串
-- `format`: 格式化模板，默认 'YYYY-MM-DD HH:mm:ss'
-
-**示例：**
-```javascript
-formatDate(new Date()); // 2024-01-15 10:30:00
-formatDate(Date.now(), 'YYYY/MM/DD'); // 2024/01/15
-formatDate('2024-01-15', 'MM月DD日'); // 01月15日
-```
-
-### formatMoney(amount, decimals)
-
-格式化金额。
-
-**参数：**
-- `amount`: 金额数值
-- `decimals`: 小数位数，默认 2
-
-**示例：**
-```javascript
-formatMoney(1234.5); // 1234.50
-formatMoney(1234.567, 3); // 1234.567
-```
-
-## 目录结构
-
-```
-miniprogram-demo-component/
-├── package.json              # npm包配置
-├── README.md                 # 使用说明文档
-├── scripts/                  # 构建脚本
-│   ├── build.js              # 构建脚本
-│   └── install.js            # 安装后自动构建脚本
-├── src/                      # 源码目录
-│   ├── index.js              # 入口文件
-│   ├── utils/
-│   │   └── format.js         # 工具方法
-│   └── components/
-│       └── custom-button/    # 自定义按钮组件
-│           ├── index.js
-│           ├── index.json
-│           ├── index.wxml
-│           └── index.wxss
-└── miniprogram_dist/         # 构建输出目录（自动生成）
-```
-
-## License
-
-MIT

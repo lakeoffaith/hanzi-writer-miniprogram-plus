@@ -10,8 +10,6 @@
 # 安装依赖
 npm install
 
-# 构建项目（将 src 复制到 miniprogram_dist）
-npm run build
 ```
 
 ## 安装到微信小程序
@@ -20,6 +18,10 @@ npm run build
 
 ```bash
 npm install --save /Users/lizhengang/githubPrg/hanzi-writer-miniprogram-plus
+```
+
+```
+npm install --save /Users/lizhengang/githubPrg/hanzi-writer
 ```
 
 或者在 小程序项目的 `package.json` 中添加依赖：
@@ -31,6 +33,14 @@ npm install --save /Users/lizhengang/githubPrg/hanzi-writer-miniprogram-plus
   }
 }
 ```
+
+```
+"dependencies": {
+    "hanzi-writer": "^2.3.0",
+    "hanzi-writer-miniprogram-plus": "file:../../githubPrg/hanzi-writer-miniprogram-plus"
+  }
+```
+
 
 然后执行 `npm install`。
 
@@ -68,6 +78,12 @@ console.log(money); // 1234.50
   }
 }
 ```
+
+```
+"usingComponents": {
+    
+    "HanziWriterView": "/miniprogram_npm/hanzi-writer-miniprogram-plus/components/hanzi-writer-view"
+  }
 
 在 WXML 中使用：
 

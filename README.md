@@ -23,7 +23,7 @@ npm install
 {
   "dependencies": {
     "hanzi-writer": "^2.3.0",
-    "hanzi-writer-miniprogram-plus": "file:~/githubPrg/hanzi-writer-miniprogram-plus"
+    "hanzi-writer-miniprogram-plus": "^1.0.0"
   }
 }
 
@@ -44,24 +44,6 @@ npm install
 
 ## 使用方法
 
-### 1. 使用工具方法
-
-```javascript
-// 在页面或组件中引入
-const { formatDate, formatMoney } = require('miniprogram-demo-component');
-
-// 使用 formatDate
-const dateStr = formatDate(new Date(), 'YYYY-MM-DD HH:mm:ss');
-console.log(dateStr); // 2024-01-15 10:30:00
-
-// 使用 formatMoney
-const money = formatMoney(1234.5, 2);
-console.log(money); // 1234.50
-```
-
-### 2. 使用自定义按钮组件
-
-
 
 在页面的 JSON 配置文件中引入组件：
 
@@ -69,7 +51,6 @@ console.log(money); // 1234.50
 {
   "usingComponents": {
     
-    "CustomButton": "/miniprogram_npm/hanzi-writer-miniprogram-plus/components/custom-button",
     "HanziWriterView": "/miniprogram_npm/hanzi-writer-miniprogram-plus/components/hanzi-writer-view"
   }
 }
@@ -79,7 +60,7 @@ console.log(money); // 1234.50
 ```
 // index.js
 
-import {formatDate,HanziWriterContext} from 'hanzi-writer-miniprogram-plus';
+import {HanziWriterContext} from 'hanzi-writer-miniprogram-plus';
 
 Page({
   onLoad: function() {
@@ -87,11 +68,6 @@ Page({
       id: 'hz-writer',
       page: this,
     });
-
-    // You can call any normal HanziWriter method here
-    // this.writerCtx.loopCharacterAnimation();
-    var day=new Date();
-    console.log(formatDate(day))
   },
   showChar:function(){
     // this.writerCtx.character

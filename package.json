@@ -1,6 +1,6 @@
 {
   "name": "hanzi-writer-miniprogram-plus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "src/index.js",
   "miniprogram": "miniprogram_dist",
   "scripts": {
@@ -9,8 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
-  "description": "",
+  "license": "MIT",
+  "description": "hanzi-writer for WeChat miniprogram",
   "files": [
     "src",
     "scripts",

@@ -4,7 +4,7 @@
 
 ## 本地开发构建
 
-在项目根目录下执行：
+在本项目根目录下执行：
 
 ```bash
 # 安装依赖
@@ -14,30 +14,27 @@ npm install
 
 ## 安装到微信小程序
 
-在小程序项目根目录下执行：
 
-```bash
-npm install --save /Users/lizhengang/githubPrg/hanzi-writer-miniprogram-plus
-```
 
-```
-npm install --save /Users/lizhengang/githubPrg/hanzi-writer
-```
 
-或者在 小程序项目的 `package.json` 中添加依赖：
+在 小程序项目的 `package.json` 中添加依赖：
 
 ```json
 {
   "dependencies": {
     "hanzi-writer": "^2.3.0",
-    "hanzi-writer-miniprogram-plus": "file:../../githubPrg/hanzi-writer-miniprogram-plus"
+    "hanzi-writer-miniprogram-plus": "file:~/githubPrg/hanzi-writer-miniprogram-plus"
   }
 }
 
 ```
 
+在小程序项目根目录下执行：
 
-然后执行 `npm install`。
+```bash
+npm install 
+```
+
 
 ## 使用前配置
 
@@ -104,7 +101,6 @@ Page({
     console.log("点击按钮 end"); 
   }
 })
-
 
 ```
 
